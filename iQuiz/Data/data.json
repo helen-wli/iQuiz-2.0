@@ -1,0 +1,98 @@
+[
+    { "title":"Science",
+      "desc": "Embrace the spirit of science",
+      "questions":[
+        {
+          "text":"How many oceans in the world?",
+          "answer":"3",
+          "answers":[
+              "One",
+              "Two",
+              "Four",
+              "Eight"
+          ]
+        },
+        {
+          "text":"How much does the earth weight?",
+          "answer":"4",
+          "answers":[
+              "10 billion lbs",
+              "1 trillion lbs",
+              "10 septillion kg",
+              "13 octillion lbs"
+          ]
+        }
+      ]
+    },
+    { "title":"Marvel Super Heroes",
+      "desc": "Show your love to Marvel Super Heroes",
+      "questions":[
+        {
+          "text":"How many infinity stones are there?",
+          "answer":"2",
+          "answers":[
+              "Three",
+              "Six",
+              "Ten",
+              "idk"
+          ]
+        },
+        {
+          "text":"Where is Captain America from?",
+          "answer":"2",
+          "answers":[
+              "Boston",
+              "Brooklyn",
+              "Chicago",
+              "New York"
+          ]
+        },
+        {
+          "text":"Pepper Potts is allergic to what?",
+          "answer":"4",
+          "answers":[
+              "Eggs",
+              "Mangoes",
+              "Shrimp",
+              "Strawberries"
+          ]
+        }
+      ]
+    },
+    { "title":"Mathematics",
+      "desc":"Test your understanding to math",
+      "questions":[
+         {
+           "text":"What is the ratio of a circle's circumference to its diameter",
+           "answer":"3",
+           "answers":[
+               "alpha",
+               "beta",
+               "pi",
+               "theta"
+           ]
+         },
+         {
+           "text":"What is pi approximately?",
+           "answer":"2",
+           "answers":[
+               "1.57",
+               "3.14",
+               "6.28",
+               "7.85"
+           ]
+         },
+         {
+           "text":"What is the nationality of Mathematician Carl Gauss",
+           "answer":"3",
+           "answers":[
+               "American",
+               "Asian",
+               "German",
+               "Indian"
+           ]
+         }
+      ]
+   }
+]
+
