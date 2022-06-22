@@ -33,8 +33,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // extract the questions of the selected topic as an array for easy access later
+        QuizData.instance.questionsOfTopic = QuizData.instance.quizzes[indexPath.row].questions
+        
+        // go to questionVC
         if let questionVC = storyboard?.instantiateViewController(withIdentifier: "questionViewController") as? QuestionViewController {
-            questionVC.questionsOfTopic = QuizData.instance.quizzes[indexPath.row].questions
             self.navigationController?.pushViewController(questionVC, animated: true)
         }
     }

@@ -9,9 +9,6 @@ import UIKit
 
 class QuestionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    // array of questions of the selected quiz topic
-    var questionsOfTopic: [Question] = []
-    
     // current question number
     var currQuestionIndex: Int = 0
     
@@ -59,6 +56,8 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
             let correctChoiceIndex = Int(currQuestion!.answer)! - 1
             
             if let answerVC = storyboard?.instantiateViewController(withIdentifier: "answerViewController") as? AnswerViewController {
+                answerVC.currQuestionIndex = self.currQuestionIndex
+                answerVC.numTotalQuestions = QuizData.instance.questionsOfTopic.count
                 answerVC.questionText = currQuestion!.text
                 answerVC.answerText = currQuestion!.answers[correctChoiceIndex]
                 answerVC.isCorrect = correctChoiceIndex == self.selectedChoiceIndex
@@ -73,7 +72,7 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         // Do any additional setup after loading the view.
         
         // set up question label
-        currQuestion = questionsOfTopic[currQuestionIndex]
+        currQuestion = QuizData.instance.questionsOfTopic[currQuestionIndex]
         questionLabel.text = currQuestion!.text
         
         // set up table view

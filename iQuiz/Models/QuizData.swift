@@ -12,11 +12,13 @@ class QuizData {
     static let instance = QuizData()
     
     var quizzes: [Quiz]
+    var questionsOfTopic: [Question]
     var correctCounter: Int // number of correct answers submitted by the user
     
     init() {
         self.quizzes = []
-        self.correctCounter = -1
+        self.questionsOfTopic = []
+        self.correctCounter = 0
     }
     
 }

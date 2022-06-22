@@ -9,30 +9,30 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="choiceTableViewCell" rowHeight="80" id="KGk-i7-Jjw" customClass="ChoiceTableViewCell" customModule="iQuiz" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="408" height="80"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="choiceTableViewCell" rowHeight="64" id="KGk-i7-Jjw" customClass="ChoiceTableViewCell" customModule="iQuiz" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="377" height="64"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" customClass="ChoiceTableViewCell" customModule="iQuiz" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="408" height="80"/>
+                <rect key="frame" x="0.0" y="0.0" width="377" height="64"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choice i where i is from {1, 2, 3, 4}" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2W1-RQ-vKL">
-                        <rect key="frame" x="70" y="29.5" width="271" height="21.5"/>
+                        <rect key="frame" x="40" y="21.5" width="271" height="21.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="2W1-RQ-vKL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="50" id="X5Q-fB-w27"/>
-                    <constraint firstItem="2W1-RQ-vKL" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="lPg-Y4-tH8"/>
+                    <constraint firstItem="2W1-RQ-vKL" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ewG-9s-e64"/>
+                    <constraint firstItem="2W1-RQ-vKL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="40" id="kGv-Zn-Y4h"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="choiceLabel" destination="2W1-RQ-vKL" id="tmX-g8-6Nd"/>
             </connections>
-            <point key="canvasLocation" x="201.44927536231884" y="106.47321428571428"/>
+            <point key="canvasLocation" x="177.536231884058" y="99.776785714285708"/>
         </tableViewCell>
     </objects>
 </document>

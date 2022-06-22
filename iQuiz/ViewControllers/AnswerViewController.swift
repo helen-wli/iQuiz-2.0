@@ -9,6 +9,8 @@ import UIKit
 
 class AnswerViewController: UIViewController {
     
+    var currQuestionIndex: Int = -1
+    var numTotalQuestions: Int = -1 // number of total questions
     var questionText: String = ""
     var answerText: String = ""
     var isCorrect: Bool = false
@@ -20,9 +22,25 @@ class AnswerViewController: UIViewController {
     @IBOutlet weak var resultLabel: UILabel!
     
     @IBAction func nextButtonPressed(_ sender: UIButton) {
-        // go to questionVC
+        if isCorrect {
+            // keep track of the number of correct answers
+            QuizData.instance.correctCounter += 1
+        }
         
-        // go to finishVC
+        if currQuestionIndex == numTotalQuestions - 1 { // last question shown
+            // go to finishVC
+            if let finishVC = storyboard?.instantiateViewController(withIdentifier: "finishViewController") as? FinishViewController {
+                finishVC.numTotalQuestions = self.numTotalQuestions
+                self.navigationController?.pushViewController(finishVC, animated: true)
+            }
+        } else { // more questions to go
+            // go to questionVC
+            if let questionVC = storyboard?.instantiateViewController(withIdentifier: "questionViewController") as? QuestionViewController {
+                questionVC.currQuestionIndex = self.currQuestionIndex + 1
+                questionVC.selectedChoiceIndex = -1
+                self.navigationController?.pushViewController(questionVC, animated: true)
+            }
+        }
     }
     
     override func viewDidLoad() {
