@@ -254,13 +254,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quiz URL for fetching data:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHf-dv-a5H">
-                                <rect key="frame" x="20" y="138" width="235.5" height="24"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your URL below:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHf-dv-a5H">
+                                <rect key="frame" x="20" y="138" width="256" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter the URL here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ao4-hz-Wx6">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="URL here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ao4-hz-Wx6">
                                 <rect key="frame" x="20" y="192" width="374" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="oYO-bk-Dhg"/>
@@ -269,9 +269,12 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAj-Fx-tyi">
-                                <rect key="frame" x="172" y="272" width="70" height="31"/>
+                                <rect key="frame" x="172" y="292" width="70" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" title="Check!"/>
+                                <connections>
+                                    <action selector="checkButtonPressed:" destination="mlS-oC-Uel" eventType="touchUpInside" id="RTt-5z-L2c"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="v1q-LG-0ks"/>
@@ -283,11 +286,14 @@
                             <constraint firstItem="Ao4-hz-Wx6" firstAttribute="leading" secondItem="v1q-LG-0ks" secondAttribute="leading" constant="20" id="ag2-bO-kgf"/>
                             <constraint firstItem="wAj-Fx-tyi" firstAttribute="centerX" secondItem="v1q-LG-0ks" secondAttribute="centerX" id="r2w-vT-sDq"/>
                             <constraint firstItem="UHf-dv-a5H" firstAttribute="top" secondItem="v1q-LG-0ks" secondAttribute="top" constant="50" id="sG0-hu-EQo"/>
-                            <constraint firstItem="wAj-Fx-tyi" firstAttribute="top" secondItem="Ao4-hz-Wx6" secondAttribute="bottom" constant="30" id="vpk-wg-xmA"/>
+                            <constraint firstItem="wAj-Fx-tyi" firstAttribute="top" secondItem="Ao4-hz-Wx6" secondAttribute="bottom" constant="50" id="vpk-wg-xmA"/>
                             <constraint firstItem="UHf-dv-a5H" firstAttribute="leading" secondItem="v1q-LG-0ks" secondAttribute="leading" constant="20" id="wzo-WZ-UOF"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="cQE-f7-plM"/>
+                    <connections>
+                        <outlet property="urlTextField" destination="Ao4-hz-Wx6" id="mPg-lJ-wkb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tiE-D7-Cmu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
