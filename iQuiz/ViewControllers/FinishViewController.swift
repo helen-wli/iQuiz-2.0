@@ -15,14 +15,29 @@ class FinishViewController: UIViewController {
     
     @IBOutlet weak var scoreLabel: UILabel!
     
-    @IBAction func doneButtonPressed(_ sender: UIButton) {
+    // Go back to the home screen
+    private func toMainVC() {
         // reset the correctCounter
         QuizData.instance.correctCounter = 0
         
-        // to back to the home screen
+        // go back to the home screen
         if let mainVC = storyboard?.instantiateViewController(withIdentifier: "viewController") as? ViewController {
             self.navigationController?.pushViewController(mainVC, animated: true)
         }
+    }
+    
+    @IBAction func doneButtonPressed(_ sender: UIButton) {
+        self.toMainVC()
+    }
+    
+    // swipe left to replace pressing "Done", go back to the home screen
+    @objc func swipeLeft(_ sender : UISwipeGestureRecognizer) {
+        self.toMainVC()
+    }
+    
+    // swipe up to quit the quiz, back to the home screen
+    @objc func swipeUp(_ sender : UISwipeGestureRecognizer) {
+        self.toMainVC()
     }
     
     override func viewDidLoad() {
@@ -35,6 +50,16 @@ class FinishViewController: UIViewController {
             messageLabel.text = "Almost :)"
         }
         scoreLabel.text = "Score: \(QuizData.instance.correctCounter)/\(numTotalQuestions) correct"
+        
+        // swipe left action
+        let swipeLf: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft(_:)))
+        swipeLf.direction = .left
+        self.view.addGestureRecognizer(swipeLf)
+        
+        // swipe up action
+        let swipeUp: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeUp(_:)))
+        swipeUp.direction = .up
+        self.view.addGestureRecognizer(swipeUp)
     }
     
 

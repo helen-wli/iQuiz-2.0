@@ -21,26 +21,66 @@ class AnswerViewController: UIViewController {
     
     @IBOutlet weak var resultLabel: UILabel!
     
-    @IBAction func nextButtonPressed(_ sender: UIButton) {
+    // Go to the QuestionViewController
+    private func toQuestionVC() {
+        if let questionVC = storyboard?.instantiateViewController(withIdentifier: "questionViewController") as? QuestionViewController {
+            questionVC.currQuestionIndex = self.currQuestionIndex + 1
+            questionVC.selectedChoiceIndex = -1
+            self.navigationController?.pushViewController(questionVC, animated: true)
+        }
+    }
+    
+    // Go to the FinishViewController
+    private func toFinishVC() {
+        if let finishVC = storyboard?.instantiateViewController(withIdentifier: "finishViewController") as? FinishViewController {
+            finishVC.numTotalQuestions = self.numTotalQuestions
+            self.navigationController?.pushViewController(finishVC, animated: true)
+        }
+    }
+    
+    // Go back to the home screen and reset quiz score
+    private func toMainVC() {
+        // reset the correctCounter
+        QuizData.instance.correctCounter = 0
+        
+        // go back to the home screen
+        if let mainVC = storyboard?.instantiateViewController(withIdentifier: "viewController") as? ViewController {
+            self.navigationController?.pushViewController(mainVC, animated: true)
+        }
+    }
+    
+    // Update quiz score
+    private func updateScore() {
         if isCorrect {
             // keep track of the number of correct answers
             QuizData.instance.correctCounter += 1
         }
+    }
+    
+    @IBAction func nextButtonPressed(_ sender: UIButton) {
+        self.updateScore()
         
-        if currQuestionIndex == numTotalQuestions - 1 { // last question shown
-            // go to finishVC
-            if let finishVC = storyboard?.instantiateViewController(withIdentifier: "finishViewController") as? FinishViewController {
-                finishVC.numTotalQuestions = self.numTotalQuestions
-                self.navigationController?.pushViewController(finishVC, animated: true)
-            }
-        } else { // more questions to go
-            // go to questionVC
-            if let questionVC = storyboard?.instantiateViewController(withIdentifier: "questionViewController") as? QuestionViewController {
-                questionVC.currQuestionIndex = self.currQuestionIndex + 1
-                questionVC.selectedChoiceIndex = -1
-                self.navigationController?.pushViewController(questionVC, animated: true)
-            }
+        if currQuestionIndex == numTotalQuestions - 1 { // last question shown, go to finishVC
+            self.toFinishVC()
+        } else { // more questions to go, to questionVC
+            self.toQuestionVC()
         }
+    }
+
+    // swipe left to replace pressing the "Next" button
+    @objc func swipeLeft(_ sender : UISwipeGestureRecognizer) {
+        self.updateScore()
+        
+        if currQuestionIndex == numTotalQuestions - 1 {  // last question shown, go to finishVC
+            self.toFinishVC()
+        } else { // more questions to go, to questionVC
+            self.toQuestionVC()
+        }
+    }
+    
+    // swipe up to quit the quiz, back to the home screen
+    @objc func swipeUp(_ sender : UISwipeGestureRecognizer) {
+        self.toMainVC()
     }
     
     override func viewDidLoad() {
@@ -54,6 +94,16 @@ class AnswerViewController: UIViewController {
         } else {
             resultLabel.text = "Got wrong :("
         }
+
+        // swipe left to go "Next"
+        let swipeLf: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft(_:)))
+        swipeLf.direction = .left
+        self.view.addGestureRecognizer(swipeLf)
+        
+        // swipe up to quit the quiz
+        let swipeUp: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeUp(_:)))
+        swipeUp.direction = .up
+        self.view.addGestureRecognizer(swipeUp)
     }
     
 

@@ -49,7 +49,8 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         })
     }
     
-    @IBAction func submitButtonPressed(_ sender: UIButton) {
+    // Submit current question and go to the AnswerViewController
+    private func submitQuestion() {
         if self.selectedChoiceIndex == -1 { // have not selected a choice
             fireAlert(alertTitle: "Oops", alertMessage: "Please select a choice to submit")
         } else {
@@ -63,6 +64,22 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
                 answerVC.isCorrect = correctChoiceIndex == self.selectedChoiceIndex
                 self.navigationController?.pushViewController(answerVC, animated: true)
             }
+        }
+    }
+    
+    @IBAction func submitButtonPressed(_ sender: UIButton) {
+        self.submitQuestion()
+    }
+    
+    // swipe left to replace pressing the "Submit" button
+    @objc func swipeLeft(_ sender : UISwipeGestureRecognizer) {
+        self.submitQuestion()
+    }
+    
+    // swipe up to go back to the home screen
+    @objc func swipeUp(_ sender : UISwipeGestureRecognizer) {
+        if let mainVC = storyboard?.instantiateViewController(withIdentifier: "viewController") as? ViewController {
+            self.navigationController?.pushViewController(mainVC, animated: true)
         }
     }
     
@@ -80,6 +97,16 @@ class QuestionViewController: UIViewController, UITableViewDataSource, UITableVi
         choiceTableView.delegate = self
         choiceTableView.register(UINib(nibName: "ChoiceTableViewCell", bundle: nil),
                                forCellReuseIdentifier: "choiceTableViewCell")
+        
+        // swipe left to submit
+        let swipeLf: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeLeft(_:)))
+        swipeLf.direction = .left
+        self.view.addGestureRecognizer(swipeLf)
+        
+        // swipe up to quit the quiz
+        let swipeUp: UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(swipeUp(_:)))
+        swipeUp.direction = .up
+        self.view.addGestureRecognizer(swipeUp)
     }
     
 
